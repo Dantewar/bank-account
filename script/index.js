@@ -7,17 +7,29 @@ const account = {
     },
 
     deposit: function (amount) {
+        if (isNaN(amount) || amount <= 0) {
+            this.accountError();
+            return;
+        }
         this.balance += amount;
         alert(`Deposited: ${amount}`);
     },
 
     withdrawal: function (amount) {
+        if (isNaN(amount) || amount <= 0 || amount > this.balance) {
+            this.accountError();
+            return;
+        }
         this.balance -= amount;
         alert(`Withdrawn: ${amount}`);
     },
 
     getAccountName: function () {
         alert(`Account holder: ${this.accountName}`);
+    },
+
+    accountError: function () {
+        alert("Error: Invalid input");
     }
 };
 
@@ -36,5 +48,7 @@ function atm() {
         account.withdrawal(amount);
     } else if (choice == 4) {
         account.getAccountName();
+    } else {
+        account.accountError();
     }
 }
