@@ -30,25 +30,36 @@ const account = {
 
     accountError: function () {
         alert("Error: Invalid input");
+    },
+
+    exitAccount: function () {
+        alert("Goodbye!");
     }
 };
 
 function atm() {
-    const choice = prompt(
-        "1. Balance\n2. Deposit\n3. Withdraw\n4. Account Name"
-    );
+    let running = true;
 
-    if (choice == 1) {
-        account.getBalance();
-    } else if (choice == 2) {
-        let amount = Number(prompt("Enter deposit amount:"));
-        account.deposit(amount);
-    } else if (choice == 3) {
-        let amount = Number(prompt("Enter withdrawal amount:"));
-        account.withdrawal(amount);
-    } else if (choice == 4) {
-        account.getAccountName();
-    } else {
-        account.accountError();
+    while (running) {
+        const choice = prompt(
+            "1. Balance\n2. Deposit\n3. Withdraw\n4. Account Name\n5. Exit"
+        );
+
+        if (choice == 1) {
+            account.getBalance();
+        } else if (choice == 2) {
+            let amount = Number(prompt("Enter deposit amount:"));
+            account.deposit(amount);
+        } else if (choice == 3) {
+            let amount = Number(prompt("Enter withdrawal amount:"));
+            account.withdrawal(amount);
+        } else if (choice == 4) {
+            account.getAccountName();
+        } else if (choice == 5) {
+            account.exitAccount();
+            running = false;
+        } else {
+            account.accountError();
+        }
     }
 }
